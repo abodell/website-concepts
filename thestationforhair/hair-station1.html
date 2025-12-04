@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Station For Hair | Long Beach, NY</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            /* Brand Colors */
+            --primary-pink: #cd3fa9;       /* Deep Orchid */
+            --primary-dark: #a02882;
+            --light-pink: #db74c1;         /* Bright Pink */
+            --soft-lavender: #f4eef5;      /* Very light background */
+            --bg-white: #ffffff;
+            
+            --text-dark: #2d2d2d;
+            --text-gray: #666666;
+            --border-color: #e0d0e0;
+            
+            --font-main: 'Lato', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--bg-white);
+        }
+
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- UTILITIES --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .text-center { text-align: center; }
+        
+        .section-title {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 15px rgba(205, 63, 169, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--primary-pink);
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: var(--text-dark);
+            font-weight: 400;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-pink);
+        }
+
+        .btn-book {
+            background-color: var(--primary-pink);
+            color: #fff !important;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(205, 63, 169, 0.3);
+        }
+
+        .btn-book:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(78, 26, 61, 0.4), rgba(78, 26, 61, 0.4)), url('https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 8px;
+            max-width: 700px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--primary-pink);
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--primary-pink);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about {
+            padding: 80px 0;
+            background-color: var(--bg-white);
+        }
+
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* --- PRICING GRID SYSTEM --- */
+        .pricing-section {
+            padding: 80px 0;
+            background-color: var(--soft-lavender);
+            position: relative;
+        }
+
+        /* Decorative Background Circle */
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #e6dce7 0%, transparent 70%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            align-items: start;
+        }
+
+        .price-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(205, 63, 169, 0.05);
+            border-top: 4px solid var(--primary-pink);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--soft-lavender);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card-header h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--primary-pink);
+        }
+
+        .price-table-head {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #999;
+            margin-bottom: 15px;
+            padding: 0 5px;
+        }
+        
+        .col-service { flex-grow: 1; }
+        .col-price { width: 70px; text-align: right; }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+            padding: 8px 5px;
+            border-bottom: 1px dotted var(--border-color);
+        }
+
+        .price-row:last-child { border-bottom: none; }
+
+        .service-name {
+            flex-grow: 1;
+            font-weight: 700;
+            color: var(--text-dark);
+            padding-right: 15px;
+        }
+
+        .service-desc {
+            display: block;
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        .price-credit {
+            width: 70px;
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .price-cash {
+            width: 70px;
+            text-align: right;
+            font-weight: 700;
+            color: var(--primary-pink);
+            font-size: 1rem;
+        }
+
+        .judy-card {
+            background-color: #fff0f9;
+            border-color: var(--primary-dark);
+        }
+        
+        .note-highlight {
+            font-size: 0.85rem;
+            color: var(--primary-pink);
+            font-weight: 600;
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #3a1830; /* Deep Plum to match brand */
+            color: #fff;
+            padding: 80px 0 30px;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+            align-items: start;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-serif);
+            color: var(--light-pink); /* Using the lighter pink for contrast */
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-contact p {
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .footer-contact a {
+            color: var(--light-pink);
+            border-bottom: 1px dotted var(--light-pink);
+        }
+
+        .footer-contact a:hover {
+            color: #fff;
+            border-bottom-style: solid;
+        }
+
+        /* Aligned Hours List */
+        .hours-list {
+            width: 100%;
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+        }
+
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+
+        .hours-row span:first-child {
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* CTA Column */
+        .cta-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cta-box p {
+            margin-bottom: 20px;
+            color: #d1d1d1;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            color: #888;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid { gap: 40px; }
+            .footer-col { text-align: center; }
+            .hours-row { justify-content: center; gap: 20px; }
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 15px; }
+            nav ul { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            .hero-content { margin: 0 20px; padding: 30px; }
+            .hero-content h1 { font-size: 2rem; }
+            
+            /* Pricing Mobile Adjustments */
+            .price-grid { grid-template-columns: 1fr; }
+            .price-row { flex-wrap: wrap; }
+            .service-name { width: 100%; margin-bottom: 5px; }
+            .price-credit, .price-cash { width: auto; margin-left: auto; padding-left: 15px; }
+            .price-table-head { display: none; }
+            
+            .footer-grid { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">The Station For Hair</a>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#pricing">Price List</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="https://hairstation.mysalononline.com/Booking/?sid=0&guid=3c09821d-073b-45b9-8a47-ea6e64c5e171" target="_blank" class="btn-book">Book Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Expert Color & Styling in Long Beach</h1>
+            <p>Welcome to your new favorite destination for hair. Professional care, vibrant colors, and timeless styles.</p>
+            <a href="https://hairstation.mysalononline.com/Booking/?sid=0&guid=3c09821d-073b-45b9-8a47-ea6e64c5e171" target="_blank" class="btn-book">Book Your Appointment</a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container about-content">
+            <h2 class="section-title">Welcome to The Station</h2>
+            <div class="section-subtitle">Since 2013</div>
+            <p>At The Station for Hair, we believe your hair is your best accessory. Located on West Beech Street, our salon offers a friendly, relaxing atmosphere where you can unwind while we work our magic.</p>
+            <p>From precision cuts to complex color corrections and Balayage, our team is dedicated to maintaining the health and integrity of your hair while achieving the look you desire.</p>
+        </div>
+    </section>
+
+    <!-- Pricing (Integrated Grid) -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Our Service Menu</h2>
+                <p class="section-subtitle">We offer a Dual Pricing structure. <span style="color:var(--primary-pink); font-weight:bold;">Pink prices indicate Cash discount.</span></p>
+            </div>
+
+            <div class="price-grid">
+
+                <!-- CARD 1: Cuts & Styling -->
+                <div class="price-card">
+                    <div class="card-header">
+                        <h3>Cuts & Styling</h3>
+                    </div>
+                    <div class="price-table-head">
+                        <span class="col-service">Service</span>
+                        <span class="col-price">Credit</span>
+                        <span class="col-price">Cash</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Women's Haircut & Style
+                            <span class="service-desc">Includes Blow Dry</span>
+                        </span>
+                        <span class="price-credit">$70.04</span>
+                        <span class="price-cash">$68+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Men's Haircut</span>
+                        <span class="price-credit">$36.05</span>
+                        <span class="price-cash">$35</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Blow-out</span>
+                        <span class="price-credit">$46.35</span>
+                        <span class="price-cash">$45+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Blow-out w/ Iron</span>
+                        <span class="price-credit">$56.65</span>
+                        <span class="price-cash">$55+</span>
+                    </div>
+                    
+                    <!-- Children merged here -->
+                    <div class="card-header" style="margin-top: 30px; border:none; padding-bottom:0;">
+                        <h3>Children</h3>
+                    </div>
+                    
+                    <div class="price-row">
+                        <span class="service-name">Girls/Boys (Under 12)</span>
+                        <span class="price-credit">$26.75</span>
+                        <span class="price-cash">$25</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Child w/ Blow-out</span>
+                        <span class="price-credit">$41.20</span>
+                        <span class="price-cash">$40+</span>
+                    </div>
+                </div>
+
+                <!-- CARD 2: Color Services -->
+                <div class="price-card">
+                    <div class="card-header">
+                        <h3>Color Services</h3>
+                    </div>
+                    <div class="price-table-head">
+                        <span class="col-service">Service</span>
+                        <span class="col-price">Credit</span>
+                        <span class="col-price">Cash</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Touch-up</span>
+                        <span class="price-credit">$80.34</span>
+                        <span class="price-cash">$78</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Toner/Glaze</span>
+                        <span class="price-credit">$26.75</span>
+                        <span class="price-cash">$25+</span>
+                    </div>
+                    
+                    <div class="price-row">
+                        <span class="service-name">Elumen Gloss
+                            <span class="service-desc">No peroxide/ammonia</span>
+                        </span>
+                        <span class="price-credit">$87.55</span>
+                        <span class="price-cash">$85+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Highlights - Full
+                            <span class="service-desc">Includes Olaplex</span>
+                        </span>
+                        <span class="price-credit">$231.75</span>
+                        <span class="price-cash">$225+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Highlights - 1/2
+                            <span class="service-desc">Includes Olaplex</span>
+                        </span>
+                        <span class="price-credit">$144.20</span>
+                        <span class="price-cash">$140+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Highlights - Partial
+                            <span class="service-desc">Includes Olaplex</span>
+                        </span>
+                        <span class="price-credit">$77.25</span>
+                        <span class="price-cash">$75+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Balayage</span>
+                        <span class="price-credit">$257.50</span>
+                        <span class="price-cash">$250+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Ombre</span>
+                        <span class="price-credit">$206.00</span>
+                        <span class="price-cash">$200+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Color Corrections</span>
+                        <span class="price-credit" style="width:140px; text-align:right;">Consultation</span>
+                        <span class="price-cash" style="display:none;"></span>
+                    </div>
+                </div>
+
+                <!-- CARD 3: Texturizing -->
+                <div class="price-card">
+                    <div class="card-header">
+                        <h3>Texturizing</h3>
+                    </div>
+                    <div class="price-table-head">
+                        <span class="col-service">Service</span>
+                        <span class="col-price">Credit</span>
+                        <span class="col-price">Cash</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Perms/Bodywaves</span>
+                        <span class="price-credit">$128.75</span>
+                        <span class="price-cash">$125+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Brazilian Blowout</span>
+                        <span class="price-credit">$206.00</span>
+                        <span class="price-cash">$200+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Keratin Treatment</span>
+                        <span class="price-credit">$257.50</span>
+                        <span class="price-cash">$250+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Leaf & Flower</span>
+                        <span class="price-credit">$56.65</span>
+                        <span class="price-cash">$55+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">K18 Treatment</span>
+                        <span class="price-credit">$36.05</span>
+                        <span class="price-cash">$35</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">10 Min Conditioning</span>
+                        <span class="price-credit">$15.45</span>
+                        <span class="price-cash">$15</span>
+                    </div>
+                </div>
+
+                <!-- CARD 4: Special Events -->
+                <div class="price-card">
+                    <div class="card-header">
+                        <h3>Special Events</h3>
+                    </div>
+                    <div class="price-table-head">
+                        <span class="col-service">Service</span>
+                        <span class="col-price">Credit</span>
+                        <span class="col-price">Cash</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Event Hair</span>
+                        <span class="price-credit">$92.70</span>
+                        <span class="price-cash">$90+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Children's Up-dos</span>
+                        <span class="price-credit">$51.50</span>
+                        <span class="price-cash">$50+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Makeup</span>
+                        <span class="price-credit">$82.40</span>
+                        <span class="price-cash">$80+</span>
+                    </div>
+                </div>
+
+                <!-- CARD 5: SERVICES WITH JUDY -->
+                <div class="price-card judy-card">
+                    <div class="card-header">
+                        <h3>Services with Judy</h3>
+                    </div>
+                    <div class="price-table-head">
+                        <span class="col-service">Service</span>
+                        <span class="col-price">Credit</span>
+                        <span class="col-price">Cash</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Haircut</span>
+                        <span class="price-credit">$75.19</span>
+                        <span class="price-cash">$73+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Color Touch-up</span>
+                        <span class="price-credit">$85.48</span>
+                        <span class="price-cash">$83</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Highlights - Full</span>
+                        <span class="price-credit">$231.75</span>
+                        <span class="price-cash">$225+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Highlights - 1/2</span>
+                        <span class="price-credit">$144.20</span>
+                        <span class="price-cash">$140+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Highlights - Partial</span>
+                        <span class="price-credit">$77.25</span>
+                        <span class="price-cash">$75+</span>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="service-name">Blow-outs</span>
+                        <span class="price-credit">$257.50</span>
+                        <span class="price-cash">$250+</span>
+                    </div>
+                    <span class="note-highlight">* All highlights include Olaplex</span>
+                </div>
+
+            </div> <!-- End Grid -->
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+<!-- Contact & Footer -->
+    <section id="contact">
+        <footer>
+            <div class="container">
+                <div class="footer-grid">
+                    
+                    <!-- Col 1: Brand & Contact -->
+                    <div class="footer-col footer-contact">
+                        <span class="footer-logo">The Station For Hair</span>
+                        <p>
+                            894 West Beech Street<br>
+                            Long Beach, NY 11561
+                        </p>
+                        <p>
+                            <strong>Phone:</strong> <a href="tel:5164424949">(516) 442-4949</a><br>
+                            <strong>Email:</strong> <a href="mailto:info@thestationforhair.net">info@thestationforhair.net</a>
+                        </p>
+                    </div>
+                    
+                    <!-- Col 2: Aligned Hours -->
+                    <div class="footer-col">
+                        <h4>Salon Hours</h4>
+                        <div class="hours-list">
+                            <div class="hours-row">
+                                <span>Sun - Mon</span>
+                                <span>Closed</span>
+                            </div>
+                            <div class="hours-row">
+                                <span>Tuesday</span>
+                                <span>10:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span>Wed - Thu</span>
+                                <span>10:00 AM - 8:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span>Friday</span>
+                                <span>10:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span>Saturday</span>
+                                <span>9:00 AM - 4:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Col 3: CTA -->
+                    <div class="footer-col">
+                        <div class="cta-box">
+                            <h4>Ready for a new look?</h4>
+                            <p>Book your appointment online easily with DaySmart.</p>
+                            <a href="https://hairstation.mysalononline.com/Booking/?sid=0&guid=3c09821d-073b-45b9-8a47-ea6e64c5e171" target="_blank" class="btn-book" style="display: inline-block; width: 100%;">Book Now</a>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; 2025 The Station For Hair. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+</body>
+</html>
