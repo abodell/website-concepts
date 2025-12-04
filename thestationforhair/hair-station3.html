@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Station For Hair | Long Beach, NY</title>
+    
+    <!-- Google Fonts: Playfair Display (Headers) & Lato (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --taupe-dark: #6d6466;      /* Sophisticated Dark */
+            --taupe-light: #b0a1a5;     /* Soft Accent */
+            --linen-bg: #f7f5f2;        /* Warm off-white background */
+            --pure-white: #ffffff;
+            --text-main: #4a4a4a;
+            
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Lato', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-main);
+            background-color: var(--linen-bg);
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            color: var(--taupe-dark);
+            line-height: 1.3;
+        }
+
+        a { text-decoration: none; transition: 0.3s; color: inherit; }
+        
+        /* --- UTILITIES --- */
+        .container { width: 85%; max-width: 1200px; margin: 0 auto; }
+        .btn-elegant {
+            display: inline-block;
+            border: 1px solid var(--taupe-dark);
+            color: var(--taupe-dark);
+            padding: 12px 35px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            margin-top: 20px;
+        }
+        .btn-elegant:hover {
+            background-color: var(--taupe-dark);
+            color: #fff;
+        }
+
+        /* --- SPLIT CENTER NAVIGATION --- */
+        nav {
+            background-color: var(--pure-white);
+            padding: 25px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-logo {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--taupe-dark);
+            margin: 0 40px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            color: #888;
+        }
+        .nav-link:hover { color: var(--taupe-dark); }
+
+        /* --- 50/50 SPLIT HERO --- */
+        .hero-split {
+            display: flex;
+            height: 85vh;
+            background-color: #fff;
+        }
+
+        .hero-text-col {
+            width: 40%;
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: var(--linen-bg);
+        }
+
+        .hero-img-col {
+            width: 60%;
+            /* Hair styling image */
+            background: url('https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=1200&auto=format&fit=crop') center/cover;
+            position: relative;
+        }
+        
+        .hero-img-col::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .hero-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            color: var(--taupe-light);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 30px; }
+        
+        /* --- MAGAZINE STYLE ABOUT --- */
+        .about-section { padding: 100px 0; }
+        
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-img-wrap {
+            position: relative;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .about-text-wrap {
+            background: var(--pure-white);
+            padding: 50px;
+            margin-left: -100px; /* Overlap effect */
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--taupe-light);
+        }
+
+        /* --- TABBED PRICING --- */
+        .pricing-section {
+            background-color: var(--pure-white);
+            padding: 100px 0;
+        }
+
+        .tabs-header {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: #ccc;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--taupe-dark);
+            border-bottom: 2px solid var(--taupe-dark);
+        }
+
+        .tab-content {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active { display: block; }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 25px;
+            border-bottom: 1px dotted #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        .price-name { font-weight: 700; color: var(--taupe-dark); }
+        .price-cost { font-weight: 700; color: var(--text-main); }
+        .price-note { display: block; font-size: 0.9rem; color: #999; font-style: italic; margin-top: 5px; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- CTA BANNER --- */
+        .cta-banner {
+            background-color: var(--taupe-dark);
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-banner h2 { color: #fff; margin-bottom: 20px; }
+        .cta-banner .btn-elegant { border-color: #fff; color: #fff; }
+        .cta-banner .btn-elegant:hover { background-color: #fff; color: var(--taupe-dark); }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--linen-bg);
+            padding: 60px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--taupe-dark);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .nav-wrapper { flex-direction: column; gap: 20px; }
+            .nav-logo { margin: 10px 0; }
+            .hero-split { flex-direction: column; height: auto; }
+            .hero-text-col, .hero-img-col { width: 100%; }
+            .hero-img-col { height: 350px; order: -1; }
+            .about-layout { grid-template-columns: 1fr; }
+            .about-text-wrap { margin-left: 5%; width: 90%; margin-top: -50px; }
+            .tabs-header { flex-direction: column; gap: 0; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Center Split Nav -->
+    <nav>
+        <div class="nav-wrapper">
+            <div class="nav-left">
+                <a href="#about" class="nav-link">Our Story</a>
+                <a href="#menu" class="nav-link">Menu</a>
+            </div>
+            
+            <a href="#" class="nav-logo">The Station</a>
+            
+            <div class="nav-right">
+                <a href="#contact" class="nav-link">Location</a>
+                <a href="https://hairstation.mysalononline.com/Booking/?sid=0&guid=3c09821d-073b-45b9-8a47-ea6e64c5e171" target="_blank" class="nav-link" style="color:var(--taupe-dark); font-weight:700;">Book Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Split Hero -->
+    <section class="hero-split">
+        <div class="hero-text-col">
+            <span class="hero-subtitle">Long Beach, New York</span>
+            <h1>Sophisticated<br>Style for<br>Every Age.</h1>
+            <p>We invite you to experience a salon environment designed for relaxation, conversation, and timeless beauty.</p>
+            <a href="#menu" class="btn-elegant">View Services</a>
+        </div>
+        <div class="hero-img-col"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-layout">
+                <div class="about-img-wrap">
+                    <!-- Placeholder Image for Salon Atmosphere (Matches Taupe Theme) -->
+                    <img src="https://placehold.co/800x600/e3ddd5/6d6466?text=Salon+Atmosphere+Image" alt="Salon Atmosphere Placeholder" class="about-img">
+                </div>
+                <div class="about-text-wrap">
+                    <h2>Welcome Home</h2>
+                    <br>
+                    <p>Since 2013, The Station has been a fixture on West Beech Street. We believe that a salon visit should feel like visiting an old friend—comfortable, unhurried, and joyful.</p>
+                    <br>
+                    <p>We specialize in serving women who appreciate quality. Whether it’s gray blending, a classic bob, or a restorative treatment, our stylists understand the nuances of hair at every stage of life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabbed Pricing -->
+    <section id="menu" class="pricing-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h2>Our Menu</h2>
+                <p style="font-size: 0.9rem; color: #888; margin-top: 10px;">Select a category below. <br>Prices shown: Credit / <strong style="color:var(--taupe-dark);">Cash Discount</strong></p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="openTab(event, 'Cuts')">Cuts & Style</button>
+                <button class="tab-btn" onclick="openTab(event, 'Color')">Color</button>
+                <button class="tab-btn" onclick="openTab(event, 'Treatments')">Treatments</button>
+            </div>
+
+            <!-- Content: Cuts -->
+            <div id="Cuts" class="tab-content active">
+                <div class="price-item">
+                    <div>
+                        <span class="price-name">Women's Haircut & Style</span>
+                        <span class="price-note">Includes shampoo, massage & blow dry</span>
+                    </div>
+                    <span class="price-cost">$70 / $68+</span>
+                </div>
+                <div class="price-item">
+                    <div>
+                        <span class="price-name">Men's Haircut</span>
+                    </div>
+                    <span class="price-cost">$36 / $35</span>
+                </div>
+                <div class="price-item">
+                    <div>
+                        <span class="price-name">Signature Blow-out</span>
+                    </div>
+                    <span class="price-cost">$46 / $45+</span>
+                </div>
+            </div>
+
+            <!-- Content: Color -->
+            <div id="Color" class="tab-content">
+                <div class="price-item">
+                    <div>
+                        <span class="price-name">Root Touch-up</span>
+                        <span class="price-note">Maintenance for regrowth</span>
+                    </div>
+                    <span class="price-cost">$80 / $78</span>
+                </div>
+                <div class="price-item">
+                    <div>
+                        <span class="price-name">Full Highlights</span>
+                        <span class="price-note">Includes Olaplex Treatment</span>
+                    </div>
+                    <span class="price-cost">$232 / $225+</span>
+                </div>
+                <div class="price-item">
+                    <div>
+                        <span class="price-name">Partial Highlights</span>
+                    </div>
+                    <span class="price-cost">$77 / $75+</span>
+                </div>
+                <div class="price-item">
+                    <div>
+                        <span class="price-name">Balayage</span>
+                        <span class="price-note">Hand-painted natural look</span>
+                    </div>
+                    <span class="price-cost">$258 / $250+</span>
+                </div>
+            </div>
+
+            <!-- Content: Treatments -->
+            <div id="Treatments" class="tab-content">
+                <div class="price-item">
+                    <div>
+                        <span class="price-name">Keratin Treatment</span>
+                        <span class="price-note">Smooths and reduces frizz</span>
+                    </div>
+                    <span class="price-cost">$258 / $250+</span>
+                </div>
+                <div class="price-item">
+                    <div>
+                        <span class="price-name">Body Wave / Perm</span>
+                        <span class="price-note">Add texture and volume</span>
+                    </div>
+                    <span class="price-cost">$129 / $125+</span>
+                </div>
+                <div class="price-item">
+                    <div>
+                        <span class="price-name">Conditioning Treatment</span>
+                    </div>
+                    <span class="price-cost">$15</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="container">
+            <h2>Ready to look your best?</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1rem;">Call us at (516) 442-4949 or book online.</p>
+            <a href="https://hairstation.mysalononline.com/Booking/?sid=0&guid=3c09821d-073b-45b9-8a47-ea6e64c5e171" target="_blank" class="btn-elegant">Book Online</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <span class="footer-logo">The Station</span>
+            <p>894 West Beech Street, Long Beach, NY</p>
+            <p>Open Tuesday - Saturday</p>
+            <br>
+            <p>&copy; 2025 The Station For Hair</p>
+        </div>
+    </footer>
+
+    <!-- Tab Logic -->
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabContent, tabBtn;
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+                tabContent[i].classList.remove("active");
+            }
+            tabBtn = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tabBtn.length; i++) {
+                tabBtn[i].className = tabBtn[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            setTimeout(() => {
+                document.getElementById(tabName).classList.add("active");
+            }, 10);
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+</body>
+</html>

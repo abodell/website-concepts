@@ -30,6 +30,8 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: var(--font-main);
             color: var(--text-dark);
@@ -114,6 +116,7 @@
             font-weight: 700;
             font-size: 0.9rem;
             box-shadow: 0 4px 10px rgba(205, 63, 169, 0.3);
+            white-space: nowrap;
         }
 
         .btn-book:hover {
@@ -387,27 +390,98 @@
             text-align: center;
         }
 
+        /* --- MOBILE RESPONSIVE FIXES --- */
         @media (max-width: 768px) {
-            .footer-grid { gap: 40px; }
-            .footer-col { text-align: center; }
-            .hours-row { justify-content: center; gap: 20px; }
-        }
+            
+            /* 1. Header Fixes */
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+                padding-bottom: 5px;
+            }
 
-        /* --- MOBILE RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .nav-container { flex-direction: column; gap: 15px; }
-            nav ul { gap: 15px; flex-wrap: wrap; justify-content: center; }
-            .hero-content { margin: 0 20px; padding: 30px; }
+            nav ul {
+                flex-direction: column; /* Stack items vertically for better spacing */
+                gap: 20px;
+                width: 100%;
+                text-align: center;
+                padding-top: 10px;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            .btn-book {
+                display: block; /* Full width button on mobile */
+                width: 100%;
+                max-width: 300px;
+                margin: 5px auto 0;
+            }
+
+            /* Hero Adjustments */
+            .hero-content { margin: 0 20px; padding: 30px 20px; }
             .hero-content h1 { font-size: 2rem; }
             
-            /* Pricing Mobile Adjustments */
+            /* 2. Pricing Mobile Adjustments */
             .price-grid { grid-template-columns: 1fr; }
-            .price-row { flex-wrap: wrap; }
-            .service-name { width: 100%; margin-bottom: 5px; }
-            .price-credit, .price-cash { width: auto; margin-left: auto; padding-left: 15px; }
-            .price-table-head { display: none; }
             
-            .footer-grid { text-align: center; }
+            .price-card {
+                padding: 20px 15px;
+            }
+
+            .price-table-head { display: none; } /* Hide labels on mobile */
+
+            .price-row {
+                flex-wrap: wrap; /* Allow wrapping */
+                padding: 15px 5px; /* More breathing room */
+            }
+
+            .service-name {
+                width: 100%; /* Force service to top line */
+                margin-bottom: 8px;
+                padding-right: 0;
+                font-size: 1.05rem;
+                border-bottom: 1px dashed rgba(0,0,0,0.05);
+                padding-bottom: 5px;
+            }
+
+            .price-credit {
+                width: 50%; /* Take half width */
+                text-align: left; /* Align Left */
+                margin: 0;
+                padding: 0;
+            }
+
+            .price-cash {
+                width: 50%; /* Take half width */
+                text-align: right; /* Align Right */
+                margin: 0;
+                padding: 0;
+            }
+
+            /* Add labels via CSS so mobile users know which price is which */
+            .price-credit::before {
+                content: 'Credit: ';
+                font-size: 0.85rem;
+                color: #999;
+                font-weight: 400;
+            }
+
+            .price-cash::before {
+                content: 'Cash: ';
+                font-size: 0.85rem;
+                color: var(--primary-pink);
+                font-weight: 400;
+            }
+            
+            /* Footer Adjustments */
+            .footer-grid { 
+                grid-template-columns: 1fr;
+                gap: 50px; 
+                text-align: center; 
+            }
+            .hours-row { justify-content: space-between; }
         }
     </style>
 </head>
@@ -718,7 +792,6 @@
     </section>
 
     <!-- Contact & Footer -->
-<!-- Contact & Footer -->
     <section id="contact">
         <footer>
             <div class="container">
